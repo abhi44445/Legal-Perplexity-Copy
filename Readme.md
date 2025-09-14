@@ -1,3 +1,10 @@
+<img width="1889" height="920" alt="Screenshot 2025-09-15 000922" src="https://github.com/user-attachments/assets/57ae0e3a-3208-489f-94fa-c7f3f6ce7be9" />
+
+<img width="1884" height="906" alt="Screenshot 2025-09-15 000935" src="https://github.com/user-attachments/assets/cc894948-8adb-443e-aa8a-db64464b8605" />
+
+<img width="1895" height="956" alt="Screenshot 2025-09-15 000906" src="https://github.com/user-attachments/assets/a9ffd777-cad2-404d-b22b-b7b616ab24ed" />
+
+
 # Legal Perplexity 2.0 - Constitutional AI Assistant
 
 An advanced AI-powered legal assistant specialized in Indian Constitutional Law. This project provides comprehensive constitutional analysis with citation-backed responses using cutting-edge RAG (Retrieval-Augmented Generation) technology.
