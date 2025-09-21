@@ -9,6 +9,26 @@
 
 An advanced AI-powered legal assistant specialized in Indian Constitutional Law. This project provides comprehensive constitutional analysis with citation-backed responses using cutting-edge RAG (Retrieval-Augmented Generation) technology.
 
+## 🚀 Key Features
+
+### 🏛️ Constitution Chat
+Expert constitutional analysis with citation-backed responses, user type adaptation, and comprehensive coverage of Indian constitutional law.
+
+### ⚖️ Know Your Rights (NEW)
+Real-world legal guidance for citizens facing situations like:
+- **Bribery & Corruption**: Police demanding bribes, government office corruption
+- **Threats & Intimidation**: Personal safety threats, illegal eviction attempts  
+- **Harassment**: Workplace harassment, public space safety, online harassment
+- **Constitutional Violations**: Understanding and asserting your fundamental rights
+
+**Key Benefits:**
+- Constitutional foundation for all advice
+- Urgency classification with emergency guidance
+- Actionable recommendations with evidence collection
+- Multi-scenario support with specialized prompts
+
+📚 **[Know Your Rights Documentation](./features/know_your_rights/docs/README.md)**
+
 ## 🏛️ Constitution Chat Feature
 
 The **Constitution Chat** is our flagship feature that provides:
@@ -31,7 +51,9 @@ The **Constitution Chat** is our flagship feature that provides:
    cd frontend && npm run dev
    ```
 
-3. **Access the Application**: Open http://localhost:5174/chat
+3. **Access the Application**: 
+   - Constitution Chat: http://localhost:5174/constitution
+   - Know Your Rights: http://localhost:5174/know-your-rights
 
 4. **Ask Constitutional Questions**: 
    - "What is Article 14 and its key principles?"
