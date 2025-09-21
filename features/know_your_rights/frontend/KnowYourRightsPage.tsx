@@ -219,6 +219,7 @@ Date: ${new Date().toLocaleDateString()}
                           ? 'border-neo-black bg-neo-black text-neo-white'
                           : 'border-neo-gray-200 hover:border-neo-gray-400'
                       }`}
+                      data-scenario={scenario.id}
                     >
                       <div className="text-2xl mb-2">{scenario.icon}</div>
                       <h3 className="font-bold mb-1 font-inter">{scenario.label}</h3>
@@ -326,6 +327,7 @@ Date: ${new Date().toLocaleDateString()}
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 className={`${urgencyConfig.bgColor} border-2 border-current rounded-lg p-4`}
+                data-testid="urgency-banner"
               >
                 <div className={`flex items-center gap-2 ${urgencyConfig.color}`}>
                   <span className="text-xl">{urgencyConfig.icon}</span>
@@ -347,7 +349,7 @@ Date: ${new Date().toLocaleDateString()}
               </CardHeader>
               <CardContent>
                 <div className="prose prose-lg max-w-none">
-                  <div className="whitespace-pre-wrap font-inter text-neo-black leading-relaxed">
+                  <div className="whitespace-pre-wrap font-inter text-neo-black leading-relaxed" data-testid="legal-advice">
                     {result.legal_advice}
                   </div>
                 </div>
@@ -383,11 +385,11 @@ Date: ${new Date().toLocaleDateString()}
                   <CardTitle className="font-inter">Legal Citations & References</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3" data-testid="citations">
                     {result.citations.map((citation, index) => (
                       <div
                         key={index}
-                        className="flex items-center gap-3 p-3 bg-neo-gray-50 border border-neo-gray-200 rounded-lg"
+                        className="flex items-center gap-3 p-3 bg-neo-gray-50 border border-neo-gray-200 rounded-lg citation"
                       >
                         <div className="text-xs px-2 py-1 bg-neo-black text-neo-white rounded font-bold uppercase">
                           {citation.type}
@@ -410,7 +412,7 @@ Date: ${new Date().toLocaleDateString()}
                   <CardTitle className="font-inter">Recommended Actions</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-3">
+                  <div className="space-y-3" data-testid="recommended-actions">
                     {result.recommended_actions.map((action, index) => {
                       const actionConfig = ACTION_CONFIGS.find(a => a.id === action)
                       if (!actionConfig) return null
@@ -424,7 +426,7 @@ Date: ${new Date().toLocaleDateString()}
                           initial={{ opacity: 0, x: -20 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: index * 0.1 }}
-                          className={`flex items-center gap-4 p-4 rounded-lg border-2 ${
+                          className={`flex items-center gap-4 p-4 rounded-lg border-2 action-item ${
                             isEmergency 
                               ? 'border-red-200 bg-red-50' 
                               : isPrimary 
@@ -466,7 +468,7 @@ Date: ${new Date().toLocaleDateString()}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-2">
+                  <div className="space-y-2" data-testid="follow-up-questions">
                     {result.follow_up_questions.map((question, index) => (
                       <div key={index} className="flex items-start gap-2 p-2">
                         <CheckCircle className="h-4 w-4 text-neo-gray-400 mt-1 flex-shrink-0" />
@@ -481,7 +483,7 @@ Date: ${new Date().toLocaleDateString()}
             {/* Disclaimer */}
             <Card className="border-orange-200 bg-orange-50">
               <CardContent className="pt-6">
-                <div className="flex items-start gap-3">
+                <div className="flex items-start gap-3" data-testid="disclaimer">
                   <AlertTriangle className="h-5 w-5 text-orange-600 mt-0.5" />
                   <div>
                     <h4 className="font-bold text-orange-800 font-inter">Important Disclaimer</h4>
