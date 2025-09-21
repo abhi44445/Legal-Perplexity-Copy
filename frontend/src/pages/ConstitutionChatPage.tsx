@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import FormattedResponse from '../components/FormattedResponse'
 import { motion } from 'framer-motion'
 import { Send, User, Bot, ArrowLeft, BookOpen, CheckCircle, AlertCircle } from 'lucide-react'
@@ -21,6 +22,7 @@ interface Message {
 }
 
 const ConstitutionChatPage: React.FC = () => {
+  const navigate = useNavigate()
   const [messages, setMessages] = useState<Message[]>([])
   const [inputValue, setInputValue] = useState('')
   const [showReasoning, setShowReasoning] = useState<{ [key: string]: boolean }>({})
@@ -70,6 +72,47 @@ const ConstitutionChatPage: React.FC = () => {
     }
   }
 
+  const handleSuggestionClick = async (suggestion: string) => {
+    setInputValue(suggestion)
+    
+    // Automatically send the suggestion
+    const userMessage: Message = {
+      id: Date.now().toString(),
+      type: 'user',
+      content: suggestion,
+      timestamp: new Date()
+    }
+
+    setMessages(prev => [...prev, userMessage])
+    clearError()
+
+    try {
+      const response = await askQuestion({
+        query: suggestion,
+        user_type: 'general_public'
+      })
+
+      const assistantMessage: Message = {
+        id: (Date.now() + 1).toString(),
+        type: 'assistant',
+        content: response.answer,
+        reasoning: response.reasoning,
+        citations: response.citations,
+        timestamp: new Date()
+      }
+
+      setMessages(prev => [...prev, assistantMessage])
+    } catch (err) {
+      const errorMessage: Message = {
+        id: (Date.now() + 1).toString(),
+        type: 'assistant',
+        content: `Sorry, I encountered an error: ${error?.message || 'Please try again later.'}`,
+        timestamp: new Date()
+      }
+      setMessages(prev => [...prev, errorMessage])
+    }
+  }
+
   const toggleReasoning = (messageId: string) => {
     setShowReasoning(prev => ({
       ...prev,
@@ -89,7 +132,7 @@ const ConstitutionChatPage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <Button variant="ghost" className="p-2">
+              <Button variant="ghost" className="p-2" onClick={() => navigate('/')}>
                 <ArrowLeft className="h-6 w-6" />
               </Button>
               <div className="flex items-center gap-3">
@@ -136,7 +179,7 @@ const ConstitutionChatPage: React.FC = () => {
                     key={index}
                     variant="outline"
                     className="text-left h-auto p-4"
-                    onClick={() => setInputValue(suggestion)}
+                    onClick={() => handleSuggestionClick(suggestion)}
                   >
                     {suggestion}
                   </Button>
