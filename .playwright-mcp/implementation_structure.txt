@@ -1,0 +1,21 @@
+features/know_your_rights/
+├── backend
+│   ├── router.py
+│   └── service.py
+├── docs
+│   ├── README.md
+│   └── golden
+│       └── golden_dataset.py
+├── frontend
+│   ├── KnowYourRightsPage.tsx
+│   ├── types.ts
+│   └── useKnowYourRights.ts
+├── mcp
+│   ├── evaluate.py
+│   ├── mcp_check.py
+│   └── validation_harness.py
+└── tests
+    ├── nyar.spec.ts
+    └── test_service.py
+
+7 directories, 12 files

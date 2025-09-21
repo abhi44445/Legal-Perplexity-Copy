@@ -199,6 +199,39 @@ export const apiService = {
         throw error as ApiError
       }
     }
+  },
+
+  // Know Your Rights
+  knowYourRights: {
+    query: async (request: { scenario: string; text: string; language?: string; user_id?: string }) => {
+      try {
+        const response = await api.post('/api/know-your-rights/query', {
+          ...request,
+          language: request.language || 'en'
+        })
+        return response.data
+      } catch (error) {
+        throw error as ApiError
+      }
+    },
+
+    validate: async (validationRequest: { output_id: string; expected: any; score: number; notes: string }) => {
+      try {
+        const response = await api.post('/api/know-your-rights/validate', validationRequest)
+        return response.data
+      } catch (error) {
+        throw error as ApiError
+      }
+    },
+
+    healthCheck: async () => {
+      try {
+        const response = await api.get('/api/know-your-rights/health')
+        return response.data
+      } catch (error) {
+        throw error as ApiError
+      }
+    }
   }
 }
 

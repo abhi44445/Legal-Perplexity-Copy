@@ -22,11 +22,11 @@ const HomePage: React.FC = () => {
     {
       id: 'rights',
       title: 'Know Your Rights',
-      description: 'Discover your fundamental rights and understand legal protections under Indian law.',
+      description: 'Get constitutional guidance for real-world situations like bribery, threats, or harassment.',
       icon: Shield,
-      route: '/rights',
+      route: '/know-your-rights',
       color: 'bg-green-50',
-      stats: '15+ right categories'
+      stats: '8+ scenario types'
     },
     {
       id: 'cases',

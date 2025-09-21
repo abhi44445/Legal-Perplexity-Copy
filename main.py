@@ -95,14 +95,17 @@ def health_check():
 # Include routers
 try:
     from routers import constitution_chat, rights, cases, research
+    # Import the new Know Your Rights router
+    from features.know_your_rights.backend import router as know_your_rights_router
     
     app.include_router(constitution_chat.router, prefix="/api/chat", tags=["Constitution Chat"])
+    app.include_router(know_your_rights_router.router, prefix="/api/know-your-rights", tags=["Know Your Rights"])
     # Temporarily commenting out other routers to isolate the issue
     # app.include_router(rights.router, prefix="/api/rights", tags=["Know Your Rights"]) 
     # app.include_router(cases.router, prefix="/api/cases", tags=["Case Outcome"])
     # app.include_router(research.router, prefix="/api/research", tags=["Legal Research"])
     
-    logger.info("Constitution chat router loaded successfully")
+    logger.info("Constitution chat and Know Your Rights routers loaded successfully")
     
 except ImportError as e:
     logger.warning(f"Some routers could not be loaded: {e}")
