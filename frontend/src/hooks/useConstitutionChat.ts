@@ -1,6 +1,10 @@
 import { useState, useCallback } from 'react'
 import { apiService } from '@/services/api'
+import { mockApiService } from '@/services/mockApi'
 import type { ConstitutionChatRequest, ConstitutionChatResponse, ApiError } from '@/services/api'
+
+// Flag to use mock API when backend is unavailable
+const USE_MOCK_API = true
 
 export interface UseConstitutionChatState {
   isLoading: boolean
@@ -19,7 +23,9 @@ export const useConstitutionChat = () => {
     setState(prev => ({ ...prev, isLoading: true, error: null, response: null }))
     
     try {
-      const response = await apiService.constitutionChat.askQuestion(request)
+      const response = USE_MOCK_API 
+        ? await mockApiService.constitutionChat.askQuestion(request)
+        : await apiService.constitutionChat.askQuestion(request)
       setState(prev => ({ ...prev, isLoading: false, response }))
       return response
     } catch (error) {
@@ -31,7 +37,9 @@ export const useConstitutionChat = () => {
 
   const getSuggestions = useCallback(async (userType = 'general_public') => {
     try {
-      const suggestions = await apiService.constitutionChat.getSuggestions(userType)
+      const suggestions = USE_MOCK_API
+        ? await mockApiService.constitutionChat.getSuggestions(userType)
+        : await apiService.constitutionChat.getSuggestions(userType)
       return suggestions
     } catch (error) {
       console.error('Failed to get suggestions:', error)

@@ -1,7 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import HomePage from './pages/HomePage'
 import ConstitutionChatPage from './pages/ConstitutionChatPage'
-import KnowYourRightsPage from '../features/know_your_rights/frontend/KnowYourRightsPage'
+import RightsExplorerPage from './pages/RightsExplorerPage'
+import CasesDatabasePage from './pages/CasesDatabasePage'
 
 function App() {
   return (
@@ -10,7 +11,8 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/constitution" element={<ConstitutionChatPage />} />
-          <Route path="/know-your-rights" element={<KnowYourRightsPage />} />
+          <Route path="/know-your-rights" element={<RightsExplorerPage />} />
+          <Route path="/cases" element={<CasesDatabasePage />} />
           {/* Add more routes as we build more pages */}
         </Routes>
       </div>
